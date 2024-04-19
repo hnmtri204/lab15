@@ -1,12 +1,20 @@
 import BookEdit from "./BookEdit";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaPencilAlt } from "react-icons/fa";
 import "./bookShow.css"
+import BookContext from "../context/book";
 
 
 
-const BookShow = ({ book, onDelete, onEdit }) => {
+
+const BookShow = ({ book }) => {
+
+        // context
+       const {onEdit} = useContext(BookContext); // lay onEdit cua useContext
+       const {onDelete} = useContext(BookContext); // lay onEdit cua useContext
+        //
+
     console.log(book);
     const image = `http://picsum.photos/seed/${book.id}/300/200`;
     const [isEdit, setIsEdit] = useState(false);
@@ -14,6 +22,7 @@ const BookShow = ({ book, onDelete, onEdit }) => {
         onEdit(id, term);
         setIsEdit(false);
     };
+
     return (
         <div className='item'>
              {!isEdit && (
